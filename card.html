@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background-color: #02022f;
+      justify-content: center;
+    }
+
+    .card {
+      width: 350px;
+      height: 350px;
+      background-color: #000028;
+      position: relative;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+
+      color: white;
+      transition: all 0.1s ease;
+    }
+
+    @property --angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .card::after,
+    .card-wrapper::after {
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      /* background: conic-gradient(
+        from var(--angle),
+        #7c83ff,
+        #28c2ec,
+        #fe46ae,
+        #8709fc,
+        #2b35eb,
+        #7c83ff
+      ); */
+      background: conic-gradient(
+        from var(--angle),
+        transparent 50%,
+        rgb(186, 36, 255)
+      );
+      z-index: -1;
+      padding: 3px;
+      /* border: 1px solid; */
+      /**/
+      border-radius: 10px;
+      animation: 3s spin linear infinite;
+    }
+
+    .card::before,
+    .card-wrapper::before {
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      background: conic-gradient(
+        from calc(var(--angle) + 180deg),
+        transparent 50%,
+        rgb(186, 36, 255)
+      );
+      z-index: -1;
+      border-radius: 10px;
+      padding: 3px;
+      animation: 3s spin linear infinite;
+    }
+
+    .card-wrapper::after {
+      filter: blur(1rem);
+      opacity: 0.7;
+    }
+    .card-wrapper::before {
+      filter: blur(1rem);
+      opacity: 0.7;
+    }
+
+    .card:hover::before,
+    .card-wrapper:hover::before {
+      animation-play-state: paused;
+    }
+    .card:hover::after,
+    .card-wrapper:hover::after {
+      animation-play-state: paused;
+    }
+
+    .card:hover {
+      box-shadow: inset 1px 1px 9px #b663ff;
+    }
+
+    @keyframes spin {
+      from {
+        --angle: 0deg;
+      }
+      to {
+        --angle: 360deg;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="card">
+      <div class="card-wrapper">
+        <h1><span style="color: #7878e3">Animated</span> Card</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt
+          asperiores officia porro.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-wrapper">
+        <h1><span style="color: #7878e3">Animated</span> Card</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt
+          asperiores officia porro.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-wrapper">
+        <h1><span style="color: #7878e3">Animated</span> Card</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt
+          asperiores officia porro.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

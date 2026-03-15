@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glass Card</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        color: white;
+        justify-content: center;
+        background-image: url("1322308.jpeg");
+      }
+
+      .card {
+        width: 400px;
+        padding: 2em;
+        border-radius: 2em;
+        position: relative;
+        text-align: center;
+        background: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(7px);
+        /* -webkit-backdrop-filter: blur(16px); */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 1;
+        transition: all 0.1s ease;
+      }
+
+      .card:hover {
+        transform: translateY(10px);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 3px;
+        border-radius: 2em;
+        background: conic-gradient(
+          from var(--angle),
+          transparent 70%,
+          rgb(126, 126, 255)
+        );
+
+        /* only show border */
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        box-shadow: 1px 1px 3px #fff;
+        z-index: -1;
+        animation: 3s spin linear infinite;
+      }
+
+      .card:hover::after {
+        content: "";
+        position: absolute;
+        padding: 3px;
+        border-radius: 2em;
+        z-index: -1;
+        filter: blur(1rem);
+        border: 14px solid rgb(48, 193, 222);
+        inset: -8px;
+        opacity: 0.5;
+        animation: 3s spin linear infinite;
+      }
+
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      @keyframes spin {
+        from {
+          --angle: 0deg;
+        }
+        to {
+          --angle: 360deg;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Animational Card</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam
+        dicta sed doloribus illo autem rem perspiciatis.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+        inventore tempore esse minus odit corrupti.
+      </p>
+    </div>
+  </body>
+</html>
